@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Recommendation</ui:define>
+	<ui:define name="content">
+		<div class="row">
+
+			<div class="col-md-8">
+				<div class="card">
+					<div class="card-header card-header-primary">
+						<h4 class="card-title">Recommendation</h4>
+						<p class="card-category">Veuillez remplir le formulaire</p>
+					</div>
+					<div class="card-body">
+						<p:messages />
+						<h:form enctype="multipart/form-data">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="form-group bmd-form-group">
+										<label for="lazy" style="margin-right: 5px">Medecins</label>
+
+										<h:selectOneMenu value="#{recommendationBean.testId}">
+											<f:selectItem itemLabel="Veuillez choisir" itemValue="" />
+											<f:selectItems value="#{recommendationBean.listMedecins}"
+												var="medecin" itemValue="#{medecin.id}"
+												itemLabel="#{medecin.firstName}"></f:selectItems>
+										</h:selectOneMenu>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group bmd-form-group">
+									<label for="lazy2" style="margin-right: 7px">Patients</label>
+
+									<h:selectOneMenu value="#{recommendationBean.testId1}">
+										<f:selectItem itemLabel="Veuillez choisir" itemValue="" />
+										<f:selectItems value="#{recommendationBean.listPatients}"
+											var="patient" itemValue="#{patient.id}"
+											itemLabel="#{patient.firstName}"></f:selectItems>
+									</h:selectOneMenu>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-4">
+									<div class="form-group bmd-form-group">
+										<label class="bmd-label-floating">l'objet de la
+											recommendation</label>
+										<p:inputText styleClass="form-control"
+											value="#{recommendationBean.objet}" required="true" />
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-3">
+									<div class="form-group bmd-form-group">
+										<label class="bmd-label-floating">Description</label>
+										<p:inputText styleClass="form-control"
+											value="#{recommendationBean.description}" required="true" />
+									</div>
+								</div>
+							</div>
+
+
+							<h:commandButton value="Modifier"
+								action="#{recommendationBean.editRecommendation()}" />
+
+							<div class="clearfix"></div>
+						</h:form>
+					</div>
+				</div>
+			</div>
+
+
+
+		</div>
+
+	</ui:define>
+</ui:composition>
